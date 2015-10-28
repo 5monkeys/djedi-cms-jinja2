@@ -28,7 +28,8 @@ class NodeExtension(Extension):
     def create_node_id(self, uri, default):
         m = hashlib.sha256()
         m.update(uri.encode('utf8'))
-        m.update(default.encode('utf8'))
+        if default:
+            m.update(default.encode('utf8'))
         return m.hexdigest()
 
     def parse_params(self, parser):
