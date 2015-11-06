@@ -8,7 +8,7 @@ setup(
     description='Jinja variants of the Djedi template tags.',
     author='Christopher Rosell',
     author_email="chrippa@tanuki.se",
-    license='MIT',
+    license='BSD',
     py_modules=['djedi_jinja'],
     install_requires=['jinja2', 'djedi-cms'],
 )
