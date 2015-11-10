@@ -12,8 +12,9 @@ from jinja2.ext import Extension
 from jinja2.lexer import Token
 
 __all__ = ['NodeExtension', 'node']
-__version__ = '2.0'
+__version__ = '2.0.1'
 __author__ = 'Christopher Rosell <chrippa@5monkeys.se>'
+__authors__ = ['Christopher Rosell', 'Andrei Fokau']
 
 
 DJEDI_TAG = 'node'

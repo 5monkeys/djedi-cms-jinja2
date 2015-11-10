@@ -4,7 +4,7 @@ from setuptools import setup
 
 setup(
     name='djedi-cms-jinja2',
-    version='2.0',
+    version='2.0.1',
     description='Jinja variants of the Djedi template tags.',
     author='Christopher Rosell',
     author_email="chrippa@tanuki.se",
