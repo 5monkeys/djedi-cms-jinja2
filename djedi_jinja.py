@@ -142,7 +142,9 @@ class NodeExtension(Extension):
         if tag == DJEDI_BLOCK_TAG:
             body = parser.parse_statements(['name:end{}'.format(DJEDI_BLOCK_TAG)], drop_needle=True)
             if body:
-                default = nodes.Const(body[0].nodes[0].data)
+                default = body[0].nodes[0].data.rstrip('\n\r ')
+                default = textwrap.dedent(default)
+                default = nodes.Const(default)
             else:
                 default = nodes.Const(None)
         else:
@@ -173,11 +175,6 @@ class NodeExtension(Extension):
                 nodes[node_id] = cio.get(uri, default=default or '')
 
     def _render_node(self, node_or_uri, default, edit, params, tag, caller):
-        if tag == DJEDI_BLOCK_TAG:
-            default = caller()
-            default = default.strip('\n\r')
-            default = textwrap.dedent(default)
-
         if isinstance(node_or_uri, str):
             node = cio.get(node_or_uri, default=default, lazy=False)
         else:
