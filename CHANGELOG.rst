@@ -1,3 +1,9 @@
+Version 2.0.2 (2016-07-11)
+--------------------------
+
+- Fixed support for Python 2, patch by @lydell.
+
+
 Version 2.0.1 (2015-11-10)
 --------------------------
 
