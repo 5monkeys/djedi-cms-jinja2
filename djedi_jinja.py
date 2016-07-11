@@ -66,7 +66,10 @@ class NodeExtension(Extension):
             m.update(default.encode('utf8'))
         return m.hexdigest()
 
-    def create_tuple(self, *values, ctx='local', node=nodes.Const, node_args=[]):
+    def create_tuple(self, *values, **kwargs):
+        ctx = kwargs.get('ctx', 'local')
+        node = kwargs.get('node', nodes.Const)
+        node_args = kwargs.get('node_args', [])
         values = [node(v, *node_args) if isinstance(v, str) else v for v in values]
         return nodes.Tuple(values, ctx)
 
