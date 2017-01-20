@@ -1,7 +1,7 @@
 Version 2.0.3 (2017-01-20)
 --------------------------
 
-- Fixed support for Jinja 2.9, patch by @wandborg.
+- Fixed support for Jinja 2.9, patch by @joar.
 
 
 Version 2.0.2 (2016-07-11)
