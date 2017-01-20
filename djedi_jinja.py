@@ -78,7 +78,7 @@ class NodeExtension(Extension):
         self._node_storage = []
 
         create_nodes = nodes.Assign(
-            nodes.Name('__', 'local'),
+            nodes.Name('__', 'store'),
             self.call_method(
                 '_create_nodes',
                 [
