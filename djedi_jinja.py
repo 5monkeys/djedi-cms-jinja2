@@ -32,29 +32,49 @@ class Builtin(object):
         return self.name
 
 
-DJEDI_NODE_STORAGE_NODE = (
-    nodes.If(
-        # if not isinstance(DJEDI_NODE_STORAGE, dict):
-        nodes.Not(
-            nodes.Call(
-                nodes.Const(Builtin('isinstance')),
-                [
-                    nodes.Name(DJEDI_NODE_STORAGE, 'load'),
-                    nodes.Const(Builtin('dict')),
-                ], [], None, None
-            )
+# Fields used by nodes.If().
+IF_NODE_FIELDS = {
+    'test': nodes.Not(
+        nodes.Call(
+            nodes.Const(Builtin('isinstance')),
+            [
+                nodes.Name(DJEDI_NODE_STORAGE, 'load'),
+                nodes.Const(Builtin('dict')),
+            ], [], None, None
+        )
+    ),
+    'body': [
+        nodes.Assign(
+            nodes.Name(DJEDI_NODE_STORAGE, 'store'),
+            nodes.Dict([])
         ),
-        # DJEDI_NODE_STORAGE = {}
-        [
-            nodes.Assign(
-                nodes.Name(DJEDI_NODE_STORAGE, 'store'),
-                nodes.Dict([])
-            ),
-        ],
-        # else: pass
-        []
+    ],
+}
+
+# Construct the Jinja2 AST equivalent of:
+#
+#   if not isinstance(DJEDI_NODE_STORAGE, dict):
+#       DJEDI_NODE_STORAGE = {}
+#
+if nodes.If.fields == ('test', 'body', 'elif_', 'else_'):
+    # Jinja 2.10 added the "elif" field to If()
+    DJEDI_NODE_STORAGE_NODE = (
+        nodes.If(
+            IF_NODE_FIELDS['test'],  # test
+            IF_NODE_FIELDS['body'],  # body
+            [],  # elif
+            [],  # else
+        )
     )
-)
+else:
+    # nodes.If.fields is assumed to be ('test', 'body', 'else')
+    DJEDI_NODE_STORAGE_NODE = (
+        nodes.If(
+            IF_NODE_FIELDS['test'],  # test
+            IF_NODE_FIELDS['BODY'],  # body
+            []  # else
+        )
+    )
 
 
 class NodeExtension(Extension):
