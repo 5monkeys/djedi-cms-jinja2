@@ -71,7 +71,7 @@ else:
     DJEDI_NODE_STORAGE_NODE = (
         nodes.If(
             IF_NODE_FIELDS['test'],  # test
-            IF_NODE_FIELDS['BODY'],  # body
+            IF_NODE_FIELDS['body'],  # body
             []  # else
         )
     )
