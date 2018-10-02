@@ -1,3 +1,9 @@
+Version 2.0.4 (2018-10-02)
+--------------------------
+
+- Fixed support for Jinja 2.10, patch by @joar & @beshrkayali.
+
+
 Version 2.0.3 (2017-01-20)
 --------------------------
 
