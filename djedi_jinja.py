@@ -7,7 +7,8 @@ import cio
 
 from djedi.templatetags.djedi_tags import render_node
 
-from jinja2 import Markup, nodes
+from jinja2 import nodes
+from markupsafe import Markup
 from jinja2.ext import Extension
 from jinja2.lexer import Token
 
@@ -15,7 +16,7 @@ __all__ = ['NodeExtension', 'node']
 __version__ = '2.0.4'
 __author__ = 'Christopher Rosell <chrippa@5monkeys.se>'
 __authors__ = ['Christopher Rosell', 'Andrei Fokau', 'Simon Lydell',
-               'Joar Wandborg', 'Beshr Kayali']
+               'Joar Wandborg', 'Beshr Kayali', 'Mika Ivarsson']
 
 
 DJEDI_TAG = 'node'
