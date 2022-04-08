@@ -8,7 +8,10 @@ import cio
 from djedi.templatetags.djedi_tags import render_node
 
 from jinja2 import nodes
-from markupsafe import Markup
+try:
+    from markupsafe import Markup
+except ImportError:
+    from jinja2 import Markup
 from jinja2.ext import Extension
 from jinja2.lexer import Token
 
